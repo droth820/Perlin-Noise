@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html> 
+ <head>
+    <title>Perlin Noise</title> 
+    <style>
+	body{
+		color:#FFFFFF;
+	}
+	.bkndColor {
+		background-color: black;
+	}
+    </style>
+</head>
+ <body class="bkndColor">
+ <center><h1>Perlin Noise Clouds</h1></center>
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(200, 200); 
+        frameRate(80);
+        
+        // ProgramCodeGoesHere
+		var xOff = 0.0;
+		var zOff = 0.0;
+		draw = function() {
+    		for (var x = 0; x < 200; x++) {
+        		var yOff = 0.0;
+        		for (var y = 0; y < 200; y++) {
+            		var bright = map(noise(xOff, yOff, zOff), 0, 1, 0, 255);
+            		stroke(bright, bright, bright);
+            		point(x, y);
+            		yOff += 0.01;
+    		}
+    		for (var z = 0; z < 100; z++){
+    		}
+    		xOff += 0.01;
+		}
+    		zOff += 0.01; 
+		};
+
+    }};
+
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
